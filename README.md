@@ -17,6 +17,7 @@ This efficient layout scales well, as 3NF structures help minimize data storage 
 ### Notes on data management rationale:
 - 'sbj' was purposefully left behind and not cleaned (sbj0001 -> 0001) with scaling in mind. To account for more data entries in the future, where 'sbj' is not guaranteed and clinicians can assign a different prefix to the subjects, 'sbj' was not removed to avoid ambiguity and allow such changes when scaling up.
 - Subject values are padded (sbj001 -> sbj0001) to ensure alphanumeric sorting and create a more intuitive table organization for clinicians/clients to review. Depending on the scale of the data, the amount of padding could be easily or dynamically adjusted to accommodate the larger number of subjects.
+- -Sanity and data integrity checks are provided but commented out in the query to ensure efficient execution.
 
 Given the flexibility of the modified database schema, there are a few interesting analyses that might be possible as the data sama sample size scales up, such as:
 - Changes in cell count over time as new treatment is introduced at various points in time.
