@@ -4,6 +4,8 @@
 Dependencies are listed in requirements.txt. They can be installed by running ```pip install -r requirements.txt``` in the terminal.
 Please run the code through ```streamlit run analysis.py```
 
+Dashboard link: https://teikoloblawbio-wbwtpe8un8du2xwf7usoy9.streamlit.app/
+
 ## Relational Database Schema and Rationale
 Given the cell-count.csv file, the raw data is separated into three tables through SQL: 
 - subject_table: Stores unique patient metadata (subject [Primary Key], Condition, Age, Sex, Treatment, Response).
