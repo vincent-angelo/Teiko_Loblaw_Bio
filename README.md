@@ -2,7 +2,7 @@
 
 ## How to run
 Dependencies are listed in requirements.txt. They can be installed by running ```pip install -r requirements.txt``` in the terminal.
-Please run the code through ```streamlit run analysis.py```
+Please run the code through ```streamlit run Analysis.py```
 
 Dashboard link: https://teikoloblawbio-wbwtpe8un8du2xwf7usoy9.streamlit.app/
 
