@@ -295,7 +295,7 @@ with tab1:
 
 	## How to run
 	Dependencies are listed in requirements.txt. They can be installed by running ```pip install -r requirements.txt``` in the terminal.
-	Please run the code through ```streamlit run analysis.py```
+	Please run the code through ```streamlit run Analysis.py```
 
 	Dashboard link: https://teikoloblawbio-wbwtpe8un8du2xwf7usoy9.streamlit.app/
 
@@ -328,3 +328,4 @@ with tab1:
 	- Analytical Layer (Python/Pandas): Afterward, for each part of the problem given, I retrieved the necessary and relevant data from the database and converted each to a pandas dataframe. Further processing is done through pandas in Python to tailor to the needs of every question. The code is dynamically coded to ensure that further additions or edits would be a simple change, such as by having my analysis logic (melting, grouping, and calculating frequencies) driven by the column headers and unique values present in the database. The boxplot for part 3 is created through seaborn, and the significance test is done through Welch's T-test that iterates through all available cell populations, setting the significance threshold at <0.05, a commonly used value. 
 	- Presentation (Streamlit): Lastly, all the analysis was wrapped into a presentable format for Yah D’yada through Streamlit. This helps create an interactive dashboard to organize and show all the analysis results, highlighting only the important results without all the analysis clutter. 
 	""")
+
