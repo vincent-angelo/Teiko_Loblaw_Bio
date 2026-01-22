@@ -13,8 +13,10 @@ db_path = r'Loblaw_Bio_cell_count.db'
 if os.path.exists(db_path):
     os.remove(db_path)
     
-st.set_page_config(page_title='Loblaw Bio: Immune Cell Population Analysis", layout="wide')
+st.set_page_config(page_title='Loblaw Bio: Immune Cell Population Analysis')
 st.title('Loblaw Bio: Clinical Trial Dashboard')
+
+### Part 1 ================================================================================================================================
 
 
 def initialize_database(csv_path, db_path):
@@ -131,7 +133,7 @@ def initialize_database(csv_path, db_path):
 
 conn = initialize_database(csv_path, db_path)
 
-### Part 2
+### Part 2 ================================================================================================================================
 #Retrieve table from database
 df_samples = pd.read_sql_query('SELECT * FROM sample_table', conn)
 df_samples_total = df_samples.copy()
@@ -152,7 +154,7 @@ df_total_melt['percentage'] = df_total_melt['count'] / df_total_melt['total_coun
 summary_table = df_total_melt[['sample', 'total_count', 'population', 'count', 'percentage']]
 
 
-### Part 3
+### Part 3 ================================================================================================================================
 #Retrieve table from database
 with sqlite3.connect('Loblaw_Bio_cell_count.db') as conn:
     df_subjects = pd.read_sql_query('SELECT * FROM subject_table', conn)
@@ -255,9 +257,10 @@ with tab3:
         This suggests cd4_t_cell may be a promising biomarker for further investigation.
         """)
 
+### Part 4 ================================================================================================================================
+
 with tab4:
     st.header('Part 4: Baseline Data Subset Analysis (t=0)')
-    ### Part 4
     # Filtering based on problem statement
     time_zero_df = filtered_df[(filtered_df['time_from_treatment_start'] == 0)]
     unique_subjects_df = time_zero_df.drop_duplicates(subset=['subject'])
@@ -266,7 +269,8 @@ with tab4:
 
     with c1:
         st.write('Samples per Project')
-        st.write(time_zero_df['project'].value_counts())
+        unique_samples_df = time_zero_df.drop_duplicates(subset=['sample'])
+        st.write(unique_samples_df['project'].value_counts())
 
     with c2:
         st.write('Responders vs Non-Responders')
@@ -284,6 +288,7 @@ with tab4:
     ### Extra Problem
     extra_problem_df = time_zero_df[(time_zero_df['population'] == 'b_cell')]
     extra_problem_df = extra_problem_df[(extra_problem_df['sex'] == 'M')]
+    extra_problem_df = extra_problem_df[(extra_problem_df['response'] == 'yes')]
     mean_b_cell = extra_problem_df['count'].mean()
     st.info(f'Average B-cells (2 sig figs): {mean_b_cell:.2g}')
     
@@ -328,4 +333,3 @@ with tab1:
 	- Analytical Layer (Python/Pandas): Afterward, for each part of the problem given, I retrieved the necessary and relevant data from the database and converted each to a pandas dataframe. Further processing is done through pandas in Python to tailor to the needs of every question. The code is dynamically coded to ensure that further additions or edits would be a simple change, such as by having my analysis logic (melting, grouping, and calculating frequencies) driven by the column headers and unique values present in the database. The boxplot for part 3 is created through seaborn, and the significance test is done through Welch's T-test that iterates through all available cell populations, setting the significance threshold at <0.05, a commonly used value. 
 	- Presentation (Streamlit): Lastly, all the analysis was wrapped into a presentable format for Yah D’yada through Streamlit. This helps create an interactive dashboard to organize and show all the analysis results, highlighting only the important results without all the analysis clutter. 
 	""")
-
