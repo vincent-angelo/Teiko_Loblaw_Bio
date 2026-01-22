@@ -290,13 +290,13 @@ with tab4:
     extra_problem_df = extra_problem_df[(extra_problem_df['sex'] == 'M')]
     extra_problem_df = extra_problem_df[(extra_problem_df['response'] == 'yes')]
     mean_b_cell = extra_problem_df['count'].mean()
-    st.info(f'Average B-cells (2 sig figs): {mean_b_cell:.2g}')
+    st.info(f'Average B-cells (2 sig figs): {mean_b_cell:.1e}')
     
 
 with tab1:
     st.header('Project Documentation & Rationale')
     st.markdown("""
-	# Teiko_Loblaw_Bio
+	# Teiko: Loblaw Bio Case
 
 	## How to run
 	Dependencies are listed in requirements.txt. They can be installed by running ```pip install -r requirements.txt``` in the terminal.
@@ -333,3 +333,4 @@ with tab1:
 	- Analytical Layer (Python/Pandas): Afterward, for each part of the problem given, I retrieved the necessary and relevant data from the database and converted each to a pandas dataframe. Further processing is done through pandas in Python to tailor to the needs of every question. The code is dynamically coded to ensure that further additions or edits would be a simple change, such as by having my analysis logic (melting, grouping, and calculating frequencies) driven by the column headers and unique values present in the database. The boxplot for part 3 is created through seaborn, and the significance test is done through Welch's T-test that iterates through all available cell populations, setting the significance threshold at <0.05, a commonly used value. 
 	- Presentation (Streamlit): Lastly, all the analysis was wrapped into a presentable format for Yah D’yada through Streamlit. This helps create an interactive dashboard to organize and show all the analysis results, highlighting only the important results without all the analysis clutter. 
 	""")
+
